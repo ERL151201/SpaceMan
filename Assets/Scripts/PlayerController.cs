@@ -25,14 +25,20 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		animator.SetBool(STATE_ALIVE, true);
-        animator.SetBool(STATE_ON_THE_GROUND, true);
+		
         
         startPosition = this.transform.position;
 	}
 
     public void StartGame(){
-        this.transform.position = startPosition;
+        animator.SetBool(STATE_ALIVE, true);
+        animator.SetBool(STATE_ON_THE_GROUND, true);
+
+       Invoke("RestartPosition", 0.2f);
+    }
+
+    void RestartPosition(){
+         this.transform.position = startPosition;
         this.rigidBody.velocity = Vector2.zero;
     }
 	
